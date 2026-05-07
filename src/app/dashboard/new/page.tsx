@@ -37,7 +37,7 @@ export default function NewProjectPage() {
             />
           </label>
           <label className="space-y-2">
-            <span className="text-sm font-medium text-zinc-800">Client email optional</span>
+            <span className="text-sm font-medium text-zinc-800">Client email (optional)</span>
             <input
               name="client_email"
               type="email"
@@ -53,7 +53,7 @@ export default function NewProjectPage() {
             />
           </label>
           <label className="space-y-2 md:col-span-2">
-            <span className="text-sm font-medium text-zinc-800">Property address optional</span>
+            <span className="text-sm font-medium text-zinc-800">Property address (optional)</span>
             <input
               name="property_address"
               className="w-full rounded-2xl border border-zinc-300 px-4 py-3 outline-none transition focus:border-emerald-500"
@@ -92,7 +92,7 @@ export default function NewProjectPage() {
             />
           </label>
           <label className="space-y-2">
-            <span className="text-sm font-medium text-zinc-800">Due date optional</span>
+            <span className="text-sm font-medium text-zinc-800">Due date (optional)</span>
             <input
               name="payment_due_date"
               type="date"
@@ -100,7 +100,7 @@ export default function NewProjectPage() {
             />
           </label>
           <label className="space-y-2 md:col-span-2">
-            <span className="text-sm font-medium text-zinc-800">Notes optional</span>
+            <span className="text-sm font-medium text-zinc-800">Notes (optional)</span>
             <textarea
               name="notes"
               rows={4}

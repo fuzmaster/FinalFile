@@ -7,7 +7,10 @@ import { createSupabaseServerClient } from "@/lib/supabase";
 import { getStripeServerClient } from "@/lib/stripe";
 import type { ProjectRecord } from "@/types/project";
 
-const createPublicSlug = customAlphabet("1234567890abcdefghijklmnopqrstuvwxyz", 10);
+const generatePublicSlug = customAlphabet(
+  "1234567890abcdefghijklmnopqrstuvwxyz",
+  10,
+);
 
 function normaliseOptionalText(value: FormDataEntryValue | null) {
   const text = value?.toString().trim();
@@ -95,7 +98,7 @@ export async function createProject(formData: FormData) {
     invoice_amount_cents: parseInvoiceAmount(formData.get("invoice_amount")),
     payment_due_date: normaliseOptionalText(formData.get("payment_due_date")),
     notes: normaliseOptionalText(formData.get("notes")),
-    public_slug: createPublicSlug(),
+    public_slug: generatePublicSlug(),
     status: "unpaid" as const,
     currency: "usd",
   };
@@ -159,7 +162,7 @@ export async function syncProjectPaymentStatus(project: ProjectRecord) {
   }
 
   const supabase = createSupabaseServerClient();
-  const paidAt = new Date().toISOString();
+  const paidAt = new Date(session.created * 1000).toISOString();
   const { data, error } = await supabase
     .from("projects")
     .update({

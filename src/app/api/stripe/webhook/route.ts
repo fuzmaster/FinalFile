@@ -34,11 +34,12 @@ export async function POST(request: Request) {
 
       if (projectId) {
         const supabase = createSupabaseServerClient();
+        const paidAt = new Date(session.created * 1000).toISOString();
         const { error } = await supabase
           .from("projects")
           .update({
             status: "paid",
-            paid_at: new Date().toISOString(),
+            paid_at: paidAt,
             stripe_checkout_session_id: session.id,
           })
           .eq("id", projectId);
