@@ -27,6 +27,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
     notFound();
   }
 
+  const projectId = project.id;
   const publicUrl = getProjectDeliveryUrl(project.public_slug);
   const deliveryEmail = buildDeliveryEmail(project);
   const reminderEmail = buildReminderEmail(project);
@@ -34,7 +35,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
   async function markPaidAction() {
     "use server";
 
-    await markProjectAsPaid(project.id);
+    await markProjectAsPaid(projectId);
   }
 
   return (
